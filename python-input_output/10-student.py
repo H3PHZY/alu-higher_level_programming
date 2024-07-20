@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""class Student that defines a student by:
+"""class Student that defines a student by: (based on 9-student.py)
 Public instance attributes"""
 
 
@@ -12,6 +12,21 @@ class Student:
         self.last_name = last_name
         self.age = age
 
-    def to_json(self):
+    def to_json(self, attrs=None):
         """ Method that returns directory description """
-        return self.__dict__.copy()
+        obj = self.__dict__.copy()
+        if type(attrs) is list:
+
+            for item in attrs:
+                if type(item) is not str:
+                    return obj
+
+            d_list = {}
+
+            for iatr in range(len(attrs)):
+                for satr in obj:
+                    if attrs[iatr] == satr:
+                        d_list[satr] = obj[satr]
+            return d_list
+
+        return obj
