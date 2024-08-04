@@ -13,3 +13,8 @@ class Student:
     def register_for_course(self, course):
         self.courses_registered.append(course)
 
+    def update_grade(self, course_name, grade_points):
+        for i, course in enumerate(self.courses_registered):
+            if course[0] == course_name:
+                self.courses_registered[i] = (course_name, course[1], grade_points)
+                break
