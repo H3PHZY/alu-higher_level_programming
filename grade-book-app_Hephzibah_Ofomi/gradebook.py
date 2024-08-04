@@ -63,17 +63,15 @@ class GradeBook:
             print("Student or course not found.")
 
     def track_attendance(self, student_email, course_name, attendance):
-    """Track attendance for a student in a course."""
-    student = next((s for s in self.student_list if s.email == student_email), None)
-    course = next((c for c in self.course_list if c.name == course_name), None)
+        """Track attendance for a student in a course."""
+        student = next((s for s in self.student_list if s.email == student_email), None)
+        course = next((c for c in self.course_list if c.name == course_name), None)
 
         if student and course:
         database.track_attendance(student_email, course_name, attendance)
             print(f"Tracking attendance: StudentEmail={student_email}, CourseName={course_name}, Attendance={attendance}")
         else:
             print("Student or course not found.")
-
-
 
     def calculate_GPA(self):
         """Calculate and update GPA for all students."""
