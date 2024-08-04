@@ -68,7 +68,7 @@ class GradeBook:
         course = next((c for c in self.course_list if c.name == course_name), None)
 
         if student and course:
-        database.track_attendance(student_email, course_name, attendance)
+            database.track_attendance(student_email, course_name, attendance)
             print(f"Tracking attendance: StudentEmail={student_email}, CourseName={course_name}, Attendance={attendance}")
         else:
             print("Student or course not found.")
