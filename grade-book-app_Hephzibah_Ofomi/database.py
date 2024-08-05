@@ -24,12 +24,13 @@ def add_course_to_db(name, trimester, credits):
     conn.commit()
     conn.close()
 
-def register_student_for_course(student_email, course_name):
+def register_student_for_course(student_email, course_name, grade_points):
     conn = connect()
     cursor = conn.cursor()
-    cursor.execute('''INSERT INTO registrations (student_email, course_name) VALUES (?, ?)''', (student_email, course_name))
+    cursor.execute('''INSERT INTO registrations (student_email, course_name, grade) VALUES (?, ?, ?)''', (student_email, course_name, grade_points))
     conn.commit()
     conn.close()
+
 
 def track_attendance(student_email, course_name, attendance):
     conn = None

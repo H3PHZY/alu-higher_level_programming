@@ -97,3 +97,13 @@ class GradeBook:
             print(f"Student with email {student_email} not found.")
             return []
 
+    def register_student_for_course(self, student_email, course_name, grade_points):
+        student = next((s for s in self.student_list if s.email == student_email), None)
+        course = next((c for c in self.course_list if c.name == course_name), None)
+
+        if student and course:
+            student.register_for_course((course.name, course.credits, grade_points))
+            database.register_student_for_course(student_email, course_name, grade_points)
+            print(f"Registered {student_email} for {course_name} with grade points {grade_points}")
+        else:
+            print("Student or course not found.")
