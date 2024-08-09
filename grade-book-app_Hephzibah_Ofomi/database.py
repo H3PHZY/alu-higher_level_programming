@@ -24,6 +24,7 @@ def add_course_to_db(name, trimester, credits):
     conn.commit()
     conn.close()
 
+<<<<<<< HEAD
 def register_student_for_course(student_email, course_name):
     conn = connect()
     cursor = conn.cursor()
@@ -37,6 +38,29 @@ def track_attendance(student_email, course_name, attendance):
     cursor.execute('''INSERT INTO attendance (student_email, course_name, attendance) VALUES (?, ?)''', (student_email, course_name, attendance))
     conn.commit()
     conn.close()
+=======
+def register_student_for_course(student_email, course_name, grade_points):
+    conn = connect()
+    cursor = conn.cursor()
+    cursor.execute('''INSERT INTO registrations (student_email, course_name, grade) VALUES (?, ?, ?)''', (student_email, course_name, grade_points))
+    conn.commit()
+    conn.close()
+
+
+def track_attendance(student_email, course_name, attendance):
+    conn = None
+    try:
+        conn = connect()
+        cursor = conn.cursor()
+        cursor.execute('''INSERT INTO attendance (student_email, course_name, attendance) 
+                          VALUES (?, ?, ?)''', (student_email, course_name, attendance))
+        conn.commit()
+    except sqlite3.Error as e:
+        print(f"An error occurred: {e}")
+    finally:
+        if conn:
+            conn.close()
+>>>>>>> e74efa9413d02b20416d7acd848127f367cd4be4
 
 def update_student_GPA(email, gpa):
     conn = connect()
