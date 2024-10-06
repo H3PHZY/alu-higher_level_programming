@@ -6,6 +6,9 @@ const FileContent = process.argv[3];
 
 fs.writeFile(FileName, FileContent, function (err) {
   if (err) {
-    console.log(err);
+    console.error("Error writing to file:", err);
+  } else {
+    console.log("File written successfully");
   }
 });
+
